@@ -1,0 +1,23 @@
+.harshit{
+    padding:10px;
+    display:flex;
+    margin:10px;
+    border:18px solid #050407;
+    list-style: none;
+}
+.hp{
+    padding:37px;
+    margin:10px;
+    border:18px solid #a591ff;
+    
+    display:flex;
+    list-style: none;
+}
+.cse{
+    padding:10px;
+    display:flex;
+    margin:10px;
+    border:18px solid #050407;
+    list-style: none;
+    a:hover { background-color: yellow; }
+}
