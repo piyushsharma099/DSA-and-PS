@@ -1,31 +1,29 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-int main(){
-    int a[20][20];
-    int i , j , n;
-    cout<<"enter n :- ";
-    cin>>n;
-    for(i=0  ; i<n; i++){
-        for(j=0 ; j<n+1 ; j++){
-            a[i][j]=0;
-;        }
-    }
-    a[0][1]=1;
-    for(i=1  ; i<n; i++){
-    for(j=1 ; j<n+1 ; j++){
-            if(a[i][j]!=0)
-            a[i][j]=a[i-1][j-1]+a[i-1][j];
-;        
-    }}
-    for(i=0  ; i<n; i++){
-        for(j=0 ; j<n-i ; j++){
-            cout<<" ";
-;        }
 
-    for(i=0  ; i<n; i++){
-        for(j=1 ; j<n+1 ; j++){
-            cout<<a[i][j]<<" ";
-;       }
-        cout<<endl;
-    }}
+int main()
+{
+    int r, c = 1;
+
+    cout << "Enter number of r: ";
+    cin >> r;
+
+    for(int i = 0; i < r; i++)
+    {
+        for(int k = 1; k <= r-i; k++)
+            cout <<"  ";
+
+        for(int j = 0; j <= i; j++)
+        {
+            if (j == 0 || i == 0)
+                c = 1;
+            else
+                c = c*(i-j+1)/j;
+
+            cout << c << "   ";
+        }
+        cout << endl;
+    }
+
+    return 0;
 }
