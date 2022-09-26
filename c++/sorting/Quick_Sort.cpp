@@ -24,18 +24,19 @@ int Quick_Sort(int a[] , int low , int high){
         Quick_Sort(a, j+1, high);
 
     }
+    return 0;
 }
 int main(){
 	int n, i;
 	cout<<"Enter the number of element :- ";
 	cin>>n;
- 	int a[n];
+ 	int a[n+1];
  	cout<<"Enter the elements :- ";
-	for(i = 0; i < n; i++){
+	for(i = 0; i < n+1; i++){
 		cin>>a[i];
 	}
- 
-	Quick_Sort(a, 0, n-1);
+    a[n]=INT_MAX;
+ 	Quick_Sort(a, 0, n-1);
 	cout<<"Sorted array :-";
 	for (i = 0; i < n; i++)
         cout<<a[i]<<" ";

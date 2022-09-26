@@ -5,7 +5,7 @@ void t_o_h(int n ,char s, char m, char d){
         return ;
     }
     else{
-        t_o_h(n-1 ,s, m, d);
+        t_o_h(n-1,s,d,m);
         cout<<"transfer dik "<<n<<" from "<<s<<" to "<<d<<endl;
         t_o_h(n-1,m,s,d);
     }
