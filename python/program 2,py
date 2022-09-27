@@ -1,0 +1,12 @@
+import math
+for i in range(0,21,2):
+    print(float(i),end=" ")
+print("\n")
+for i in range(0,21,2):
+    print(complex(i),end=" ")
+print("\n")
+for i in range(0,21,2):
+    print(math.ceil(i/3),end=" ")
+print("\n")
+for i in range(0,21,2):
+    print(math.floor(i/3),end=" ")

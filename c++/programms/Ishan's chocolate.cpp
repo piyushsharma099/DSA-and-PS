@@ -8,5 +8,5 @@ int main(){
     cin>>a[i];
     cout<<*min_element(a,a+n)<<endl;
     //cout<<*max_element(a,a+n)<<endl;
-	
+	return 0;
 }
