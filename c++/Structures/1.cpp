@@ -4,25 +4,56 @@
 
 #include<bits/stdc++.h>
 using namespace std;
+int countingsort(int a[] , int n , int max ){
+    int i , j , ans[20] ;
+    int c[max+1]={0};
+    for(i=0 ; i<n ; i++){
+        c[a[i]]++;
+    }
+    for(i=1 ; i<max+1 ; i++){
+        c[i]=c[i]+c[i-1];
+    }
+    for(j=n-1 ; j>=0 ; j--){
+        ans[c[a[j]]-1]=a[j];
+        c[a[j]]--;
+    }
+    for (i=0 ; i<n ; i++){
+        return ans[i];
+    }
+}
 typedef struct students{
     char n[20];
     int rn;
-    int m_s1;
-    int m_s2;
-    int m_s3;
-    int m_s4;
-    int m_s5;
-    int m_s6;
-} st
+    int a[10];  // marks
+} st;
 int main(){
     students st;
-    cout<<"Enter yor name :- ";
+    int a[6]={0};
+    int sum=0,n=6,max=0,i;
+    float percent;
+    cout<<"Enter your name :- ";
     cin>>st.n;
     cout<<"Enter your roll number :- ";
     cin>>st.rn;
     cout<<"Enter your marks in your 6 subjects :- ";
-    cin>>st.m_s1>>st.m_s2>>st.m_s3>>st.m_s4>>st.m_s5>>st.m_s6;
-    for(int i ; i<6 ; i++){
-        if()
+    for(int i=0 ; i<6 ; i++){
+        cin>>st.a[i];
     }
+    for(i=0 ; i<n ; i++){
+        if(a[i]>max){
+            max=a[i];
+        }
+    }
+    countingsort(a,n,max);
+    for(int i=6 ; i>2 ; i--){
+        sum+=a[i];
+    }
+    percent=(sum/4);
+    if(percent>95){
+        cout<<"Qualified";
+    }
+    else{
+        cout<<"Not Qualified";
+    }
+    
 }
