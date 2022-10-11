@@ -1,6 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 int partition(int a[] , int low , int high){
+    int x=low+(rand()% high+1);
+    swap(a[low],a[x]);
     int i=low , j=high+1 ;
     int pivot=a[low];
     do{

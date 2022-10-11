@@ -5,7 +5,7 @@ void Compare_String(string s1 , string s2){
         cout<<"equal";
     }
     else{
-        cout<<"not equal";
+        cout<<"not equal"; 
     }
 }
 int main(){

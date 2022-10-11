@@ -10,5 +10,5 @@ int main(){
         c++;
     }
 }
-cout<<c;
+cout<<c+1;
 }
