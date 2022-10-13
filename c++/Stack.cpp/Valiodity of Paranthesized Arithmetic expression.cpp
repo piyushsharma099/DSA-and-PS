@@ -46,17 +46,35 @@ int stacktop(){
     return x;
 }
 int main(){
-    int x,rem,a;
-    char conversion[16]={'0','2','3','4','4','5','6','7','8','9','A','B','C','D','E','F'};
-    cin>>x;
+    char e[]="(())";
+    int i=0,f=1;
+    char x;
     Initialize();
-    while(x!=0){
-        rem=x%16;
-        push(rem);
-        x=x/16;
+    while(e[i]!='\0'){
+        x=e[i];
+        if(x=='('){
+            push(x);
+        }
+        else{
+            if(IsEmpty()){
+                f=0;
+                break;
+            }
+            else{
+                Pop();
+            }
+        }
+        i++;
     }
-    while(!IsEmpty()){
-        a=Pop();
-        cout<<conversion[a];
+    if(IsEmpty()){
+        if(f==0){
+            cout<<"Incorrect";
+        }
+        else{
+            cout<<"correct";
+        }
+    }
+    else{
+        cout<<"Incorrect";
     }
 }

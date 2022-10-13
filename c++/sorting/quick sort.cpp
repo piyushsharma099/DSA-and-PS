@@ -37,7 +37,7 @@ int main(){
 	cin>>n;
  	int a[n+1];
  	cout<<"Enter the elements :- ";
-	for(int i = 0; i < n+1; i++){
+	for(int i = 0; i < n; i++){
 		cin>>a[i];
 	}
     a[n]=INT_MAX;

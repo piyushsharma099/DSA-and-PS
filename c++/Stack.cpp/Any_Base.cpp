@@ -46,14 +46,14 @@ int stacktop(){
     return x;
 }
 int main(){
-    int x,rem,a;
+    int x,rem,a,b;
     char conversion[16]={'0','2','3','4','4','5','6','7','8','9','A','B','C','D','E','F'};
-    cin>>x;
+    cin>>x>>b;
     Initialize();
     while(x!=0){
-        rem=x%16;
+        rem=x%b;
         push(rem);
-        x=x/16;
+        x=x/b;
     }
     while(!IsEmpty()){
         a=Pop();

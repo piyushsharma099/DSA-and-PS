@@ -45,18 +45,37 @@ int stacktop(){
     int x= S.item[S.top];
     return x;
 }
-int main(){
-    int x,rem,a;
-    char conversion[16]={'0','2','3','4','4','5','6','7','8','9','A','B','C','D','E','F'};
-    cin>>x;
+int evaluate(int a,int b,char s){
+    switch(s){
+        case '+' : return a+b;
+        case '-' : return a-b;
+        case '*' : return a*b;
+        case '/' : return a/b;
+        case '%' : return a%b;
+    }
+}
+void p_f_e(char *e){
+    int a,b,x;
+    char s;
+    int i=0;
     Initialize();
-    while(x!=0){
-        rem=x%16;
-        push(rem);
-        x=x/16;
+    strrev(e);
+    while(e[i]!='\0'){
+        s=e[i];
+        i++;
+        if(s>='0' && s<='9'){
+            push(s-'0');
+        }
+        else{
+            a=Pop();
+            b=Pop();
+            x=evaluate(a,b,s);
+            push(x);
+        }
+        cout<<Pop();
     }
-    while(!IsEmpty()){
-        a=Pop();
-        cout<<conversion[a];
-    }
+}
+int main(){
+    char e[]="-*368";
+    p_f_e(e);
 }
