@@ -72,8 +72,8 @@ void p_f_e(char *e){
             x=evaluate(a,b,s);
             push(x);
         }
-        cout<<Pop();
     }
+    cout<<Pop();
 }
 int main(){
     char e[]="-*368";

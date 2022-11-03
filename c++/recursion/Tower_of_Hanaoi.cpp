@@ -6,7 +6,7 @@ void t_o_h(int n ,char s, char m, char d){
     }
     else{
         t_o_h(n-1,s,d,m);
-        cout<<"transfer dik "<<n<<" from "<<s<<" to "<<d<<endl;
+        cout<<"transfer disk "<<n<<" from "<<s<<" to "<<d<<endl;
         t_o_h(n-1,m,s,d);
     }
 }

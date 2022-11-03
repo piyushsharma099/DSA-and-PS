@@ -1,11 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
-int Palindrome_no(int n, int temp){
+int Palindrome_no(int n, int rev){
 	if(n==0)
-		return temp;
+		return rev;
     else{
-        temp=(temp*10)+(n%10);
-        return Palindrome_no(n/10,temp);
+        rev=(rev*10)+(n%10);
+        return Palindrome_no(n/10,rev);
     }
 }
 int main(){

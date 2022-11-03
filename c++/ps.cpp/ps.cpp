@@ -1,27 +1,13 @@
-#include <bits/stdc++.h>
-using namespace std;
-int palindrome(string s, int st, int en){
-    if(en-st==1 || st==en){
-        return 1;
-    }
-    else{
-        if(s[st]==s[en]){
-            return palindrome(s,st+1,en-1); 
-        }
-        else{
-            return 0;
-        }
-    }
-}
-int main(){
-   string s;
-   cin>>s;
-   int n=s.length();
-   if(palindrome(s, 0, n-1)){
-       cout<<"Yes"<<endl;
-   }
-   else{
-       cout<<"No"<<endl;
-   }
-   return 0;
-}
+class Solution {
+public:
+	int pivotIndex(vector<int>& nums) {
+		vector<int> s{0};
+		for (int num : nums) s.push_back(s.back()+num);
+		for(int i = 0; i<s.size()-1; i++){
+			if(s[i] == s[nums.size()] - s[i+1]){
+				return i;
+			}
+		}
+		return -1;
+	}
+};

@@ -5,7 +5,7 @@ int gcd(int a , int b){
         return a;
     }
     else{
-        return gcd(b,a%b);
+        return gcd(b,a%b); // LCM(a,b)=(a*b)/GCD(a,b)
     }
 }
 int main(){
