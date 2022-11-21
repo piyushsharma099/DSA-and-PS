@@ -21,31 +21,29 @@ bool Isempty(){
         return FALSE;
     }
 }
-void EnQueue(int x){
-    if(Q.Rear == size-1){
-        cout<<"Queue Overflows";
+void Enqueue(int x){
+    if(Q.Rear==size-1){
+        cout<<"Queue Overflow";
         exit(1);
     }
-    Q.Rear++;
+    Q.Rear=Q.Rear+1;
     Q.items[Q.Rear]=x;
 }
-int DeQueue(){
-    int x;
+int Dequeue(){
     if(Isempty()){
-        cout<<"Queue Underflows";
-        exit(10);
+        cout<<"Queue underflow";
+        exit(1);
     }
-    x=Q.items[Q.Front];
+    int x=Q.items[Q.Front];
     Q.Front++;
     return x;
 }
 int main(){
     Initialize();
-    EnQueue(2);
-    EnQueue(4);
-    EnQueue(6);
-    EnQueue(8);
-    EnQueue(10);
-    EnQueue(12);
-    cout<<DeQueue();
+    Enqueue(12);
+    Enqueue(1);
+    Enqueue(13);
+    Enqueue(2);
+    Enqueue(14);
+    cout<<Dequeue();
 }

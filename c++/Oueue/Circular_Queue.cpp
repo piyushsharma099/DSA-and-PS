@@ -21,7 +21,7 @@ void EnQueue(int x){
 }
 int DeQueue(){
     int x;
-    if(CQ.Rear=CQ.Front){
+    if(CQ.Rear==CQ.Front){
         cout<<"Queue Underflows";
         exit(1);
     }
