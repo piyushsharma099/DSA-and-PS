@@ -1,9 +1,0 @@
-{
-    "workspaceMount": "",
-    "build": {
-        "dockerfile": "volume.Dockerfile"
-    },
-    "settings": {
-        "extensions.ignoreRecommendations": true
-    }
-}
