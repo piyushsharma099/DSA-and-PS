@@ -1,102 +1,97 @@
-<<<<<<< HEAD
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-#define TRUE 1
-#define FALSE 0
-struct Stack {
-    int item[10];
-    int top;
+#define n 100
+
+class twoStacks
+{
+   int *arr;
+   int size;
+   int top1, top2;
+
+public:
+   twoStacks()
+   {
+      size = n;
+      arr = new int[n];
+      top1 = -1;
+      top2 = n;
+   }
+
+   void push1(int x)
+   {
+      if (top2 - 1 == top1)
+      {
+         cout << "Stack Overflow"
+              << " By element : " << x << endl;
+         return;
+      }
+      else
+      {
+         top1++;
+         arr[top1] = x;
+      }
+   }
+
+   void push2(int x)
+   {
+      if (top2 - 1 == top1)
+      {
+         cout << "Stack Overflow"
+              << " By element : " << x << endl;
+         return;
+      }
+      else
+      {
+         top2--;
+         arr[top2] = x;
+      }
+   }
+
+   int pop1()
+   {
+      if (top1 == -1)
+      {
+         cout << "Stack UnderFlow" << endl;
+         exit(1);
+      }
+      else
+      {
+         int x = arr[top1];
+         top1--;
+         return x;
+      }
+   }
+
+   int pop2()
+   {
+      if (top2 == n)
+      {
+         cout << "Stack UnderFlow" << endl;
+         exit(1);
+      }
+      else
+      {
+         int x = arr[top2];
+         top2++;
+         return x;
+      }
+   }
 };
-struct Stack S;
 
-void Initialize(){
-    S.top=-1;
-}
-void push(int x){
-    if (S.top==(10-1)){
-        cout<<"Stack Overflow";
-        exit(1);
-    }
-    else{
-        S.top=S.top+1;
-        S.item[S.top]=x;
-    }
-
-}
-int IsEmpty(){
-    if (S.top==-1){
-        return TRUE;
-    }
-    else{
-        return FALSE;
-    }
-}
-int Pop(){
-    if(IsEmpty()){
-        cout<<"Stack Underflow";
-        exit(1);
-    }
-    else{
-        int x=S.item[S.top];
-        S.top=S.top-1;
-        return x;
-    }
-}
-int stacktop(){
-    int x= S.item[S.top];
-    return x;
-}
-int main(){
-    
-=======
-#include<bits/stdc++.h>
-using namespace std;
-#define TRUE 1
-#define FALSE 0
-struct Stack {
-    int item[10];
-    int top;
-};
-struct Stack S;
-
-void Initialize(){
-    S.top=-1;
-}
-void push(int x){
-    if (S.top==(10-1)){
-        cout<<"Stack Overflow";
-        exit(1);
-    }
-    else{
-        S.top=S.top+1;
-        S.item[S.top]=x;
-    }
-
-}
-int IsEmpty(){
-    if (S.top==-1){
-        return TRUE;
-    }
-    else{
-        return FALSE;
-    }
-}
-int Pop(){
-    if(IsEmpty()){
-        cout<<"Stack Underflow";
-        exit(1);
-    }
-    else{
-        int x=S.item[S.top];
-        S.top=S.top-1;
-        return x;
-    }
-}
-int stacktop(){
-    int x= S.item[S.top];
-    return x;
-}
-int main(){
-    
->>>>>>> 3bff3d08f24ad2857c8ef7b63920d6c9de4ed0c8
+int main()
+{
+   twoStacks ts;
+   ts.push1(5);
+   ts.push2(10);
+   ts.push2(15);
+   ts.push1(11);
+   ts.push2(7);
+   cout << "Popped element from stack1 is "
+        << ": " << ts.pop1() << endl;
+   ts.push2(40);
+   cout << "Popped element from stack2 is "
+        << ": " << ts.pop2() << endl;
+   ts.pop1();
+   ts.pop1();
+   return 0;
 }
