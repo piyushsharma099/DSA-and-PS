@@ -26,20 +26,34 @@ void Traversal(struct node*list){
     }
     cout<<endl;
 }
-struct node*Reverse(struct node**l1,struct node**l2){
-    struct node *p,*q;
-    p=*l1;
-    while(p!=NULL){
-        Insert_Beg((l2),p->info);
-        p=p->next;
+// struct node*Reverse(struct node**l1,struct node**l2){
+//     struct node *p,*q;
+//     p=*l1;
+//     while(p!=NULL){
+//         Insert_Beg((l2),p->info);
+//         p=p->next;
+//     }
+//     return 0;
+// }
+struct node*Reverse(struct node**l1){
+    struct node*c,*p,*n;
+    p=NULL;
+    c=*l1;
+    n=c->next;
+    while(c!=NULL){
+        c->next=p;
+        p=c;
+        c=n;
+        if(n!=NULL){
+            n=n->next;
+        }
     }
+    *(l1)=p;
     return 0;
 }
 int main(){
     struct node*l1;
-    struct node*l2;
     l1=NULL;
-    l2=NULL;
     Insert_Beg(&(l1),1);
     Insert_Beg(&(l1),2);
     Insert_Beg(&(l1),3);
@@ -47,6 +61,6 @@ int main(){
     Insert_Beg(&(l1),5);
     Insert_Beg(&(l1),6);
     Traversal(l1);
-    Reverse(&(l1),&(l2));
-    Traversal(l2);
+    Reverse(&(l1));
+    Traversal(l1);
 }
