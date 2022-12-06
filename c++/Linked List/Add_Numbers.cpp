@@ -91,11 +91,11 @@ struct node* Add_Numbers(struct node*l1,struct node*l2){
         Insert_Beg(&l3,sum);
     }
     while(q!=NULL){
-    total=(q->info+carry);
-    sum=total%10;
-    carry=total/10;
-    q=q->next;
-    Insert_Beg(&l3,sum);
+        total=(q->info+carry);
+        sum=total%10;
+        carry=total/10;
+        q=q->next;
+        Insert_Beg(&l3,sum);
     }
     if(carry>0){
         Insert_Beg(&l3,carry);

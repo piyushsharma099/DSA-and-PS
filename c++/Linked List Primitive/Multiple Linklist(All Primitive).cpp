@@ -41,15 +41,20 @@ struct node *Insert_After(struct node**list , int x){
 // #######################################################################
 // Insert End
 struct node *Insert_End(struct node**list,int x){
-    struct node *temp,*p;
-    temp=*list;
-    while(temp->next!=NULL){
-        temp=temp->next;
+    struct node *Q,*p;
+    Q=*list;
+    if(Q==NULL){
+        Insert_Beg(&(*list),x);
     }
-    p=getnode(list);
-    p->info=x;
-    p->next=NULL;
-    temp->next=p;
+    else{
+        while(Q->next!=NULL){
+            Q=Q->next;
+        }
+        p=getnode(list);
+        p->info=x;
+        p->next=NULL;
+        Q->next=p;
+    }
     return 0;
 }
 // #######################################################################

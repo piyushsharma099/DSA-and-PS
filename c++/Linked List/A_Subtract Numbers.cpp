@@ -42,22 +42,6 @@ struct node *Insert_End(struct node**list,int x){
     }
     return 0;
 }
-struct node*Reverse(struct node**l1){
-    struct node*c,*p,*n;
-    p=NULL;
-    c=*l1;
-    n=c->next;
-    while(c!=NULL){
-        c->next=p;
-        p=c;
-        c=n;
-        if(n!=NULL){
-            n=n->next;
-        }
-    }
-    *(l1)=p;
-    return 0;
-}
 int count(struct node**list){
     struct node*p;
     p=*list;
@@ -77,17 +61,33 @@ void Traversal(struct node*list){
     }
     cout<<endl;
 }
-struct node* addzeros(struct node*l1,struct node*l2){
-    if(count(&l1)>count(&l2)){
-        int x=count(&l1)-count(&l2);
-        while(x--){
-            Insert_End(&l2,0);
+struct node*Reverse(struct node**l1){
+    struct node*c,*p,*n;
+    p=NULL;
+    c=*l1;
+    n=c->next;
+    while(c!=NULL){
+        c->next=p;
+        p=c;
+        c=n;
+        if(n!=NULL){
+            n=n->next;
         }
     }
-    else if(count(&l1)<count(&l2)){
-        int x=count(&l2)-count(&l1);
+    *(l1)=p;
+    return 0;
+}
+struct node* addzeros(struct node**l1,struct node**l2){
+    if(count(l1)>count(l2)){
+        int x=count(l1)-count(l2);
         while(x--){
-            Insert_End(&l1,0);
+            Insert_Beg(l2,0);
+        }
+    }
+    else if(count(l1)<count(l2)){
+        int x=count(l2)-count(l1);
+        while(x--){
+            Insert_Beg(l1,0);
         }
     }
     else{
@@ -100,21 +100,17 @@ bool Greater(struct node**l1,struct node**l2){
     p=*l1;
     q=*l2;
     if(count(l1)>count(l2)){
-        cout<<"1"<<endl;
         return true;
     }
     else if(count(l1)<count(l2)){
-        cout<<"2"<<endl;
         return false;
     }
     else{
         while(p!=NULL && q!=NULL){
             if(p->info>q->info){
-                cout<<"3"<<endl;
                 return true;
             }
             else if(p->info<q->info){
-                cout<<"4"<<endl;
                 return false;
             }
             else{
@@ -125,12 +121,45 @@ bool Greater(struct node**l1,struct node**l2){
     }
     return 0;
 }
-struct node*sub_number(struct node*l1,struct node*l2){
-    addzeros(l1,l2);
-    Traversal(l1);
-    Traversal(l2);
-    int x=Greater(&l1,&l2);
-    cout<<x;
+struct node*sub_number(struct node**l1,struct node**l2){
+    struct node*p,*q,*r;
+    r=NULL;
+    int diff,bor=0;
+    int x=Greater(&(*l1),&(*l2));
+    addzeros(&(*l1),&(*l2));
+    Reverse(&(*l1));
+    Reverse(&(*l2));
+    p=(*l1);
+    q=(*l2);
+    while(p!=NULL && q!=NULL){
+        if(x==1){
+            if(p->info<q->info){
+                diff=10+(p->info-q->info)-bor;
+                bor=1;
+                Insert_Beg(&r,diff);
+            }
+            else{
+                diff=(p->info-q->info)-bor;
+                bor=0;
+                Insert_Beg(&r,diff);
+            }
+        }
+        else{
+            if(q->info<p->info){
+                diff=10+(q->info-p->info)-bor;
+                bor=1;
+                Insert_Beg(&r,diff);
+            }
+            else{
+                diff=(q->info-p->info)-bor;
+                bor=0;
+                Insert_Beg(&r,diff);
+            }
+        }
+        p=p->next;
+        q=q->next;
+    }
+    Traversal(r);
     return 0;
 }
 int main(){
@@ -146,5 +175,5 @@ int main(){
     Insert_End(&l2,4);
     Insert_End(&l2,9);
     Traversal(l2);
-    sub_number(l1,l2);
+    sub_number(&l1,&l2);
 }

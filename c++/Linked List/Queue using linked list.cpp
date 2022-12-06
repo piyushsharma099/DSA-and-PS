@@ -9,17 +9,30 @@ struct node * getnode(struct node**START){
     p=(struct node*)malloc(sizeof(struct node));
     return p;
 }
+struct node *Insert_Beg(struct node**list,int x){
+    struct node *Q;
+    Q=getnode(list);
+    Q->info=x;
+    Q->next=*list;
+    *list=Q;
+    return 0;
+} 
 // Insert End
 struct node *Insert_End(struct node**list,int x){
-    struct node *temp,*p;
-    temp=*list;
-    while(temp->next!=NULL){
-        temp=temp->next;
+    struct node *Q,*p;
+    Q=*list;
+    if(Q==NULL){
+        Insert_Beg(&(*list),x);
     }
-    p=getnode(list);
-    p->info=x;
-    p->next=NULL;
-    temp->next=p;
+    else{
+        while(Q->next!=NULL){
+            Q=Q->next;
+        }
+        p=getnode(list);
+        p->info=x;
+        p->next=NULL;
+        Q->next=p;
+    }
     return 0;
 }
 // Deletion in begining 

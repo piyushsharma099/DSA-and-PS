@@ -26,15 +26,20 @@ struct node *Insert_After(struct node**list , int x){
     return 0;
 }
 struct node *Insert_End(struct node**list,int x){
-    struct node *temp,*p;
-    temp=*list;
-    while(temp->next!=NULL){
-        temp=temp->next;
+    struct node *Q,*p;
+    Q=*list;
+    if(Q==NULL){
+        Insert_Beg(&(*list),x);
     }
-    p=getnode(list);
-    p->info=x;
-    p->next=NULL;
-    temp->next=p;
+    else{
+        while(Q->next!=NULL){
+            Q=Q->next;
+        }
+        p=getnode(list);
+        p->info=x;
+        p->next=NULL;
+        Q->next=p;
+    }
     return 0;
 }
 void Traversal(struct node*list){
@@ -46,44 +51,53 @@ void Traversal(struct node*list){
     }
     cout<<endl;
 }
-int middle_element(struct node**list){
+struct node*middle_element(struct node**s,struct node**l){
     struct node*t,*r;
-    t=*list;
-    r=(*list);
-    while(r!=NULL && r->next!=NULL){
+    t=*s;
+    r=(*s);
+    while(r!=(*l) && r->next!=(*l)){
         t=t->next;
         r=r->next;
         r=r->next;
     }
-    return (t->info);
+    return t;
 }
-int Binary_Search(struct node**list , int x){
-    struct node*p;
-    p=*list;
-    int mid;
-    if(p!=NULL){
-        mid=middle_element(list);
-        if(x==mid){
-            return mid;
-        }
+int Binary_Search(struct node**l1 , int x){
+    struct node*s,*l;
+    s=*l1;
+    l=NULL;
+     do{
+        struct node*mid=middle_element(&s,&l);        
+        if(mid==NULL){
+            return false;
+        }        
+        if(mid->info==x){
+            return true;       
+        } 
+        else if(mid->info<x){
+            s=mid->next;      
+        }  
         else{
-            if(x<mid){
-                  
-            }
+            l=mid;
         }
-    }
-
+    }while (l==NULL || l!=s);
+    return false;
 }
 int main(){
     struct node*l1,*p,*q;
     l1=NULL;
-    Insert_Beg(&(l1),10);
-    Insert_Beg(&(l1),12);
-    Insert_Beg(&(l1),30);
-    Insert_Beg(&(l1),14);
-    Insert_Beg(&(l1),50);
-    Insert_Beg(&(l1),16);
-    Insert_Beg(&(l1),70);
-    Insert_Beg(&(l1),18);
-    Insert_Beg(&(l1),90);
+    Insert_End(&(l1),10);
+    Insert_End(&(l1),12);
+    Insert_End(&(l1),30);  
+    Insert_End(&(l1),44);
+    Insert_End(&(l1),50);
+    Insert_End(&(l1),66);
+    Insert_End(&(l1),70);
+    Insert_End(&(l1),88);
+    Insert_End(&(l1),90);
+    cout<<"Enter the Element to search"<<endl;
+    int x;
+    cin>>x;
+    int ans=Binary_Search(&(l1),x);
+    cout<<ans;
 }

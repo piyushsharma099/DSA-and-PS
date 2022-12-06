@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 struct node{
-    int info;
+    char info;
     struct node *next;
 };
 struct node * getnode(struct node**list){
@@ -11,7 +11,7 @@ struct node * getnode(struct node**list){
 }
 // #######################################################################
 // insert at begining 
-struct node *Insert_Beg(struct node**list,int x){
+struct node *Insert_Beg(struct node**list,char x){
     struct node *temp;
     temp=getnode(list);
     temp->info=x;
@@ -21,7 +21,7 @@ struct node *Insert_Beg(struct node**list,int x){
 } 
 // #######################################################################
 // Insert After
-struct node *Insert_After(struct node**list , int x){
+struct node *Insert_After(struct node**list , char x){
     // struct node *temp,*p;
     // temp=*list;
     // while(temp!=NULL){
@@ -46,7 +46,7 @@ struct node *Insert_After(struct node**list , int x){
 }
 // #######################################################################
 // Insert End
-struct node *Insert_End(struct node**list,int x){
+struct node *Insert_End(struct node**list,char x){
     struct node *Q,*p;
     Q=*list;
     if(Q==NULL){
@@ -67,7 +67,7 @@ struct node *Insert_End(struct node**list,int x){
 // Deletion in begining 
 int Delete_Beg(struct node**list){
     struct node *temp=*list;
-    int x;
+    char x;
     (*list)=(*list)->next;
     x=temp->info;
     free(temp);
@@ -77,7 +77,7 @@ int Delete_Beg(struct node**list){
 // Delete After the node
 int Delete_After(struct node**list){
     struct node *p,*q;
-    int x;
+    char x;
     p=*list;
     if(p!=NULL && p->next!=NULL){
         q=p->next;
@@ -96,7 +96,7 @@ int Delete_End(struct node**list){
     struct node *p,*q;
     p=*list;
     q=NULL;
-    int x;
+    char x;
     while(p->next!= NULL){
         q=p;
         p=p->next;
@@ -116,4 +116,44 @@ void Traversal(struct node*list){
         t=t->next;
     }
     cout<<endl;
+}
+void vowel_consonent(struct node**l1){
+    struct node*p,*q,*r;;
+    p=(*l1);
+    q=(*l1);
+    r=(*l1)->next;
+    while(q!=NULL){
+        if((q->info)=='a'||(q->info)=='e'||(q->info)=='i'||(q->info)=='o'||(q->info)=='u'){
+            q=q->next;
+            Delete_After(&r);
+            if((p->info)=='a'||(p->info)=='e'||(p->info)=='i'||(p->info)=='o'||(p->info)=='u'){
+                Insert_After(&p,q->info);
+                p=p->next;
+            }
+            else{
+                Insert_Beg(l1,q->info);
+                p=(*l1);         
+            }
+        }
+        else{
+            r=r->next;
+            q=q->next;
+        }
+    }
+    Traversal((*l1));
+}
+
+int main(){
+    struct node*l1;
+    l1=NULL;
+    Insert_End(&l1,'a');
+    Insert_End(&l1,'b');
+    Insert_End(&l1,'c');
+    Insert_End(&l1,'d');
+    Insert_End(&l1,'e');
+    Insert_End(&l1,'f');
+    //
+    Traversal(l1);
+    //
+    vowel_consonent(&l1);
 }
