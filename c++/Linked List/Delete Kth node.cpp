@@ -34,3 +34,22 @@ int main(){
     //
     Delete_kth(&l1,n);
 }
+
+// GFG solution 
+//###############################
+// Node*p,*q;
+//         p=(head);
+//         q=(head);
+//         while(n--){
+//             if(p!=NULL){
+//                 p=p->next;
+//             }
+//             else{
+//                 return -1;
+//             }
+//         }
+//         while(p!=NULL){
+//             p=p->next;
+//             q=q->next;
+//         }
+//         return q->data;

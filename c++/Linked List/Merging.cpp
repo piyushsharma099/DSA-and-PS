@@ -53,17 +53,34 @@ int main(){
     struct node*l2;
     l1=NULL;
     l2=NULL;
-    // List 1;
+    // List 1
     Insert_End(&l1,10);
     Insert_End(&l1,12);
     Insert_End(&l1,30);
     Insert_End(&l1,40);
     Insert_End(&l1,50);
+    Insert_End(&l1,60);
+    Insert_End(&l1,70);
+    Insert_End(&l1,80);
+    Insert_End(&l1,200);
     // List 2
-    Insert_End(&l2,12);
-    Insert_End(&l2,30);
-    Insert_End(&l2,40);
-    Insert_End(&l2,50);
-    int ans = Merging_Point(&l1,&l2);
+    struct node*p;
+    p=(l1);
+    for(int i=0 ; i<4 ; i++){
+        p=p->next;
+    }
+    Insert_End(&l2,9);
+    Insert_End(&l2,11);
+    Insert_End(&l2,20);
+    Insert_End(&l2,25);
+    struct node*q;
+    q=(l2);
+    while(q->next!=NULL){
+        q=q->next;
+    }
+    q->next=p;
+    Traversal(l1);
+    Traversal(l2);
+    int ans=Merging_Point(&l1,&l2);
     cout<<ans;
 }
