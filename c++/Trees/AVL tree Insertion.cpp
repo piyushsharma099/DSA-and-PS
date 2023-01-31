@@ -276,17 +276,23 @@ int main(){
     // postorderTraversal(root);
     // cout<<endl;
     //
-    AVL_Insert(&root,35);
-    AVL_Insert(&root,12);
-    AVL_Insert(&root,2);
-    AVL_Insert(&root,1);
-    AVL_Insert(&root,30);
-    AVL_Insert(&root,25);
+    // AVL_Insert(&root,35);
+    // AVL_Insert(&root,12);
+    // AVL_Insert(&root,2);
+    // AVL_Insert(&root,1);
+    // AVL_Insert(&root,30);
+    // AVL_Insert(&root,25);
+    // AVL_Insert(&root,9);
+    // AVL_Insert(&root,6);
+    // AVL_Insert(&root,5);
+    // AVL_Insert(&root,20);
+    //
+    AVL_Insert(&root,10);
     AVL_Insert(&root,9);
+    AVL_Insert(&root,8);
+    AVL_Insert(&root,7);
     AVL_Insert(&root,6);
     AVL_Insert(&root,5);
-    AVL_Insert(&root,20);
-    //
     PreorderTraversal(root);
     cout<<endl;
     inorderTraversal(root);

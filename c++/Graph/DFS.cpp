@@ -1,21 +1,19 @@
 #include<bits/stdc++.h>
 using namespace std;
-void BFS(vector<int>adj[] , int n){
-    vector<int> status(n);
-    queue<int>Q;
-    status[0]=1;
-    Q.push(0);
-    cout<<"Order of BFS is : ";
-    while(Q.size()!=0){
-        int x=Q.front();
-        cout<<x<<" , ";
-        Q.pop();
-        for(int k=0 ; k<adj[x].size() ; k++){
-            int e=adj[x][k];
-            if(status[e]==0){
-                status[e]=1;
-                Q.push(e);
-            }
+void DFS_Visit(vector<int>adj[] , vector<int>&status , int i){
+    status[i]=1;
+    cout<<i<<" ";
+    for(int j=0 ; j<adj[i].size() ; j++){
+        if(status[adj[i][j]]==0){ 
+            DFS_Visit(adj , status , adj[i][j]);
+        }
+    }
+}
+void DFS(vector<int>adj[] , int n){
+    vector<int>status(n);
+    for(int i=0 ; i<n ; i++){
+        if(status[i]==0){
+            DFS_Visit(adj , status , i);
         }
     }
 }
@@ -36,10 +34,11 @@ int main(){
         int j=0;
         cout<<i<<" : ";
         for(int j=0 ; j<adj[i].size() ; j++){
-            cout<<adj[i][j]<<",";
+            cout<<adj[i][j]<<" ";
         }
         cout<<endl;
     }
-    cout<<"BFS Sequence is :- ";
-    BFS(adj,n);
+    cout<<"DFS ORDER IS :- ";
+    DFS(adj , n);
+    
 }
