@@ -1,6 +1,5 @@
 #include<bits/stdc++.h>
 using namespace std;
-
 void TS(vector<int>adj[] , int v){
     int indeg[v] = {0};
     for(int i=0;i<v;i++){
@@ -14,23 +13,20 @@ void TS(vector<int>adj[] , int v){
             q.push(i);
         }
     }
-    vector<int> ans;
-    while(!q.empty()){
-        int node = q.front();
+    cout<<"Topological Sort : "<<endl;
+    while(q.size()!=0){
+        int x;
+        x=q.front();
         q.pop();
-        ans.push_back(node);
-        for(auto j : adj[node]){
-            indeg[j]--;
-            if(indeg[j] == 0){
-                q.push(j);
+        for(int i=0 ; i<adj[x].size() ; i++){
+            indeg[adj[x][i]]--;
+            if(indeg[adj[x][i]]==0){
+                q.push(adj[x][i]);
             }
         }
-    }
-    for(int i:ans){
-        cout<<i<<" ";
+        cout<<x<<" ";
     }
 }
-
 int main(){
     int e,i,a,b;
     cout<<"Enter The Number Of vertices :- ";
@@ -57,11 +53,6 @@ int main(){
         }
         cout<<endl;
     }
-    cout<<endl<<"InDegree and OutDegree are "<<endl;
-    for(int i=0 ; i<v ; i++){
-        cout<<i<<" In = "<<InDeg[i]<<" out = "<<OutDeg[i]<<endl;
-    }
-    cout<<endl;
     TS(adj , v);
     cout<<endl;
 }

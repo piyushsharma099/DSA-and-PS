@@ -5,6 +5,7 @@ struct node{
     struct node *left;
     struct node *right;
     struct node *next;
+    struct node *father;
     int h;
 };
 struct node* Makenode(int x){
@@ -126,7 +127,7 @@ int max(int p , int q){
         return q;
     }
 }
-int height(struct node*T){
+int h(struct node*T){
     if(T==NULL){
         return 0;
     }
@@ -135,8 +136,8 @@ int height(struct node*T){
             return 0;
         }
         else{
-            int l=height(T->left);
-            int r=height(T->right);
+            int l=h(T->left);
+            int r=h(T->right);
             return max(l,r) + 1;
         }
     }
@@ -228,7 +229,7 @@ struct node *BST_Insert(struct node**T , int x){
             (*T)->right=BST_Insert(&((*T)->right),x);
         }
     }
-    (*T)->h=height((*T));
+    (*T)->h=h((*T));
     return (*T);
 }
 struct node *AVL_Insert(struct node**T , int x){
@@ -259,40 +260,70 @@ struct node *AVL_Insert(struct node**T , int x){
             }
         }
     }
-    (*T)->h=height((*T));
+    (*T)->h=h((*T));
     return (*T);
+}
+struct node * minValueNode(struct node* T){
+    struct node* current = T;
+    while (current->left != NULL)
+        current = current->left;
+    return current;
+}
+struct node* deletenode(struct node* root, int data){
+    if (root == NULL)
+        return root;
+    if ( data < root->data )
+        root->left = deletenode(root->left, data);
+    else if( data > root->data )
+        root->right = deletenode(root->right, data);
+    else{
+        if( (root->left == NULL) ||
+            (root->right == NULL) ){
+            node *temp = root->left ? root->left : root->right;
+            if (temp == NULL){
+                temp = root;
+                root = NULL;
+            }
+            else 
+            *root = *temp; 
+            free(temp);
+        }
+        else{
+            node* temp = minValueNode(root->right);
+            root->data = temp->data;
+            root->right = deletenode(root->right,temp->data);
+        }
+    }    
+    if (root == NULL)
+    return root;
+    root->h = 1 + max(h(root->left),h(root->right));
+    int balance = Balance_factor(root);
+    if (balance > 1 &&
+        Balance_factor(root->left) >= 0)
+        return RR(root);
+    if (balance > 1 &&
+        Balance_factor(root->left) < 0){
+        root->left = LL(root->left);
+        return RR(root);
+    }
+    if (balance < -1 &&
+        Balance_factor(root->right) <= 0)
+        return LL(root);
+    if (balance < -1 &&
+        Balance_factor(root->right) > 0){
+        root->right = RR(root->right);
+        return LL(root);
+    }
+    return root;
 }
 int main(){
     struct node *root=NULL;
-    // int x;
-    // cout<<"Enter the Root node Data :- ";
-    // cin>>x;
-    // root=Makenode(x);
-    // CreateTree(&root);
-    // PreorderTraversal(root);
-    // cout<<endl;
-    // inorderTraversal(root);
-    // cout<<endl;
-    // postorderTraversal(root);
-    // cout<<endl;
-    //
-    AVL_Insert(&root,35);
-    AVL_Insert(&root,12);
-    AVL_Insert(&root,2);
-    AVL_Insert(&root,1);
-    AVL_Insert(&root,30);
-    AVL_Insert(&root,25);
+    AVL_Insert(&root,10);
     AVL_Insert(&root,9);
-    AVL_Insert(&root,6);
+    AVL_Insert(&root,80);
+    AVL_Insert(&root,7);
+    AVL_Insert(&root,16);
     AVL_Insert(&root,5);
-    AVL_Insert(&root,20);
-    
-    // AVL_Insert(&root,10);
-    // AVL_Insert(&root,9);
-    // AVL_Insert(&root,8);
-    // AVL_Insert(&root,7);
-    // AVL_Insert(&root,6);
-    // AVL_Insert(&root,5);
     PreorderTraversal(root);
     cout<<endl;
     inorderTraversal(root);
@@ -300,16 +331,9 @@ int main(){
     postorderTraversal(root);
     cout<<endl;
     Level_Order_Traversal(root);
-    //
-    // Mine(root);
-    // cout<<endl;
-    // //
-    // Maxe(root);
-    // cout<<endl;
-    // //
-    // struct node*p=BST_search(&root,70);
-    // cout<<p->data;
-    // cout<<endl;
-    // //
+    deletenode(root,7);
+    cout<<endl;
+    cout<<"After Deleting node 7 : "<<endl;
+    Level_Order_Traversal(root);
     return 0;
 }

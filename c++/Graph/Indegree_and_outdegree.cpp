@@ -25,5 +25,9 @@ int main(){
         }
         cout<<endl;
     }
+    cout<<endl<<"InDegree and OutDegree are "<<endl;
+    for(int i=0 ; i<n ; i++){
+        cout<<i<<" In = "<<InDeg[i]<<" out = "<<OutDeg[i]<<endl;
+    }
     
 }
